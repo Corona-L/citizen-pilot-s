@@ -6,14 +6,14 @@ import { Votes } from '../votes/votes.entity';
 @Table
 export class Proposal extends Model<Proposal> {
   @Column({
-      type: DataType.STRING,
-      allowNull: false,
+    type: DataType.STRING,
+    allowNull: false,
   })
   title: string;
 
   @Column({
-      type: DataType.TEXT,
-      allowNull: false,
+    type: DataType.TEXT,
+    allowNull: false,
   })
   description: string;
 
@@ -33,7 +33,7 @@ export class Proposal extends Model<Proposal> {
     type: DataType.INTEGER,
     allowNull: false,
   })
-  votes: string;
+  votes: number;
 
   @Column({
     type: DataType.BOOLEAN,

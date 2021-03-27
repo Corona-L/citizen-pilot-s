@@ -9,11 +9,11 @@ export class ReportsDto {
 
   @IsNotEmpty()
   @MinLength(2)
-  readonly longitude: string;
+  readonly longitude: number;
 
   @IsNotEmpty()
   @MinLength(2)
-  readonly latitude: string;
+  readonly latitude: number;
 
   @IsNotEmpty()
   readonly category: string;

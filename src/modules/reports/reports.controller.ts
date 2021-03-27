@@ -31,7 +31,7 @@ export class ReportsController {
     const report = await this.reportsService.findOne(id)
 
     // If the report id doesn't exist in the db, throw a 404 error
-    if(!report) {
+    if (!report) {
       throw new NotFoundException('This Report does not exist');
     }
 

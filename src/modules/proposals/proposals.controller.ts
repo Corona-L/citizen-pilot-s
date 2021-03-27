@@ -29,6 +29,8 @@ export class ProposalsController {
   @UseGuards(AuthGuard('jwt'))
   @Post()
   async create(@Body() post: ProposalDto, @Request() req): Promise<ProposalEntity> {
+    console.log('HEERRREEEEEEEEE');
+
     // create a new post and return the newly created post
     return await this.proposalService.create(post, req.user.id);
   }
@@ -41,7 +43,7 @@ export class ProposalsController {
     // if the number of row affected is zero,
     // it means the post doesn't exist in our db
     if (numberOfAffectedRows === 0) {
-        throw new NotFoundException('This Post doesn\'t exist');
+      throw new NotFoundException('This Post doesn\'t exist');
     }
     // return the updated post
     return updatedPost;
@@ -67,7 +69,7 @@ export class ProposalsController {
     // if the number of row affected is zero,
     // then the post doesn't exist in our db
     if (deleted === 0) {
-        throw new NotFoundException('This Post doesn\'t exist');
+      throw new NotFoundException('This Post doesn\'t exist');
     }
     // return success message
     return 'Successfully deleted';

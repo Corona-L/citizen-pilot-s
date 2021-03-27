@@ -6,7 +6,7 @@ import { ProjectDto } from './dto/project.dto';
 
 @Controller('projects')
 export class ProjectsController {
-  constructor(private readonly projectService: ProjectsService) {}
+  constructor(private readonly projectService: ProjectsService) { }
 
   @Get()
   async findAll() {
@@ -31,19 +31,19 @@ export class ProjectsController {
   @Post()
   async create(@Body() project: ProjectDto, @Request() req): Promise<ProjectEntity> {
     // create a new project and return the newly created project
-    return await this.projectService.create(project, req.employee.id)
+    return await this.projectService.create(project, req.user.id)
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(@Param('id') id: number, @Body() project: ProjectDto, @Request() req): Promise<ProjectEntity> {
     // get the number of row affected and the updated post
-    const { numberOfAffectedRows, updatedProject } = await this.projectService.update(id, project, req.employee.id);
+    const { numberOfAffectedRows, updatedProject } = await this.projectService.update(id, project, req.user.id);
 
     // if the number of row affected is zero,
     // it means the post doesn't exist in our db
     if (numberOfAffectedRows === 0) {
-        throw new NotFoundException('This Post doesn\'t exist');
+      throw new NotFoundException('This Post doesn\'t exist');
     }
 
     // return the updated post
@@ -59,7 +59,7 @@ export class ProjectsController {
     // if the number of row affected is zero,
     // then the post doesn't exist in our db
     if (deleted === 0) {
-        throw new NotFoundException('This Project doesn\'t exist');
+      throw new NotFoundException('This Project doesn\'t exist');
     }
 
     // return success message

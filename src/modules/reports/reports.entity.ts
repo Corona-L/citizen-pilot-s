@@ -26,13 +26,13 @@ export class Report extends Model<Report> {
     type: DataType.FLOAT,
     allowNull: false,
   })
-  longitude: string;
+  longitude: number;
 
   @Column({
     type: DataType.FLOAT,
     allowNull: false,
   })
-  latitude: string;
+  latitude: number;
 
   @Column({
     type: DataType.STRING,

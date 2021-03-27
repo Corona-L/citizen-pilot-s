@@ -35,9 +35,9 @@ export class ContactsController {
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
   async update(@Param('id') id: number, @Body() post: ContactsDto, @Request() req): Promise<ContactEntity> {
-      // get the number of row for the update
+    // get the number of row for the update
     const { numberOfAffectedRows, updatedContact } = await this.contactsService.update(
-        id, post, req.user.id
+      id, post, req.user.id
     );
 
     // If zero, contact doesnt exist in the DB
