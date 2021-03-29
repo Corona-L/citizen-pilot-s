@@ -1,4 +1,10 @@
-import { Table, Column, Model, DataType, BelongsToMany, Association } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  BelongsToMany,
+} from 'sequelize-typescript';
 import { Proposal } from '../proposals/proposals.entity';
 import { Votes } from '../votes/votes.entity';
 
@@ -40,12 +46,5 @@ export class User extends Model<User> {
   voted: number[];
 
   @BelongsToMany(() => Proposal, () => Votes)
-  proposals: Proposal[]
+  proposals: Proposal[];
 }
-
-
-// beer.associate = model => {
-//   beer.belongsToMany(model.User, { through: 'UserBeers' });
-// };
-// return beer;
-// };

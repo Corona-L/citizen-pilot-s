@@ -2,13 +2,12 @@ import {
   Controller,
   Get,
   Post,
-  Put,
   Delete,
   Param,
   Body,
   NotFoundException,
   UseGuards,
-  Request
+  Request,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ReportsService } from './reports.service';
@@ -17,7 +16,7 @@ import { ReportsDto } from './dto/reports.dto';
 
 @Controller('reports')
 export class ReportsController {
-  constructor(private readonly reportsService: ReportsService) { }
+  constructor(private readonly reportsService: ReportsService) {}
 
   @Get()
   async findAll() {
@@ -27,7 +26,7 @@ export class ReportsController {
   @UseGuards(AuthGuard('jwt'))
   @Get('user')
   async findAllByUser(@Request() req): Promise<ReportEntity> {
-    const report = await this.reportsService.findAllByUser(req.user.id)
+    const report = await this.reportsService.findAllByUser(req.user.id);
 
     if (!report) {
       throw new NotFoundException('This user has no reports');
@@ -40,7 +39,7 @@ export class ReportsController {
   @UseGuards(AuthGuard('jwt'))
   @Get(':id')
   async findOne(@Param('id') id: number): Promise<ReportEntity> {
-    const report = await this.reportsService.findOne(id)
+    const report = await this.reportsService.findOne(id);
 
     if (!report) {
       throw new NotFoundException('This Report does not exist');
@@ -50,7 +49,10 @@ export class ReportsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post()
-  async create(@Body() report: ReportsDto, @Request() req): Promise<ReportEntity> {
+  async create(
+    @Body() report: ReportsDto,
+    @Request() req,
+  ): Promise<ReportEntity> {
     return await this.reportsService.create(report, req.user.id);
   }
 
