@@ -35,15 +35,6 @@ export class ContactsController {
 
   @UseGuards(AuthGuard('jwt'))
   @Put(':id')
-<<<<<<< HEAD
-  async update(@Param('id') id: number, @Body() post: ContactsDto, @Request() req): Promise<ContactEntity> {
-    // get the number of row for the update
-    const { numberOfAffectedRows, updatedContact } = await this.contactsService.update(
-      id, post, req.user.id
-    );
-
-    // If zero, contact doesnt exist in the DB
-=======
   async update(
     @Param('id') id: number,
     @Body() post: ContactsDto,
@@ -53,7 +44,6 @@ export class ContactsController {
       numberOfAffectedRows,
       updatedContact,
     } = await this.contactsService.update(id, post, req.user.id);
->>>>>>> ffe806a3374980849905a8ee3ddfd5db988b262e
     if (numberOfAffectedRows === 0) {
       throw new NotFoundException(
         'This Contact does not exist, please enter the correct Contact',

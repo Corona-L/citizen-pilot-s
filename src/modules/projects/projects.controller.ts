@@ -40,7 +40,7 @@ export class ProjectsController {
     @Body() project: ProjectDto,
     @Request() req,
   ): Promise<ProjectEntity> {
-    return await this.projectService.create(project, req.employee.id);
+    return await this.projectService.create(project, req.user.id);
   }
 
   @UseGuards(AuthGuard('jwt'))
